@@ -23,7 +23,7 @@ exports.getAnimals = async function (p) {
 			LEFT JOIN user_weapon_kills ON user_weapon.uwid = user_weapon_kills.uwid
 		WHERE animal.id = ${p.msg.author.id}
 			AND animal.xp > 0
-		ORDER BY xp DESC LIMIT 100;`;
+		ORDER BY animal.xp DESC;`;
 	let result = await p.query(sql);
 	let animals = teamUtil.parseTeam(result, result);
 	for (let i in animals) animalUtil.stats(animals[i]);
